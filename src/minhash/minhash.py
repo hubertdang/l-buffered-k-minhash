@@ -22,3 +22,10 @@ class VanillaMinHash:
 
         for i in range(k):
             self.signature.append(min(H(A, h[i])))
+
+    def get_signature(self):
+        """
+        Gets the sketch's k-MinHash signature, a list of k MinHashes computed
+        from k hash functions
+        """
+        return self.signature
