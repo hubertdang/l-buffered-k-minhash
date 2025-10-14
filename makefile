@@ -6,3 +6,6 @@ setup:
 
 test:
 	$(VENV)/bin/python -m unittest discover -s tests -p "test_*.py" -v
+
+perf:
+	$(VENV)/bin/python -m scripts.minhash_perf
