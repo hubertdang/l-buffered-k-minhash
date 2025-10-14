@@ -16,7 +16,10 @@ class VanillaMinHash:
 
     def __init__(self, A: set):
         if not isinstance(A, set):
-            raise TypeError("a must be of type 'set'")
+            raise TypeError("A must be of type 'set'")
+
+        if len(A) == 0:
+            raise ValueError("A must not be empty")
 
         self.signature = []
 
