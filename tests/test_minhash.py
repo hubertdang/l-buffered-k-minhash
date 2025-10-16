@@ -30,3 +30,23 @@ class TestVanillaMinHash(unittest.TestCase):
         A = set()
         with self.assertRaises(ValueError):
             min_hash = VanillaMinHash(A)
+
+    def test_insert_new_integer(self):
+        A = {1, 2, 3}
+        min_hash = VanillaMinHash(A)
+        original_signature = min_hash.get_signature().copy()
+        min_hash.insert(10)
+        self.assertEqual(len(min_hash.get_signature()), k)
+
+    def test_insert_existing_integer(self):
+        A = {1, 2, 3}
+        min_hash = VanillaMinHash(A)
+        original_signature = min_hash.get_signature().copy()
+        min_hash.insert(2)
+        self.assertEqual(original_signature, min_hash.get_signature())
+
+    def test_insert_invalid_type(self):
+        A = {1, 2, 3}
+        min_hash = VanillaMinHash(A)
+        with self.assertRaises(TypeError):
+            min_hash.insert(3.14)

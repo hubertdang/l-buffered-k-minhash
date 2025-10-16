@@ -38,6 +38,9 @@ class VanillaMinHash:
         Insert an element x into the sketch and update the k-MinHash signature
         if necessary
         """
+        if not isinstance(x, int):
+            raise TypeError("x must be of type 'int'")
+
         for i in range(k):
             hx = h[i](x)
             if hx < self.signature[i]:
