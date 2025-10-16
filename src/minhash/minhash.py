@@ -1,5 +1,8 @@
 import mmh3
 
+N = 100000
+U = set(range(N))  # the simulated universe
+
 k = 128
 
 # k hash functions that are uniformly at random (UAR)
@@ -20,6 +23,9 @@ class VanillaMinHash:
 
         if len(A) == 0:
             raise ValueError("A must not be empty")
+
+        if not A.issubset(U):
+            raise ValueError("A is not a subset of the universe U")
 
         self.signature = []
 

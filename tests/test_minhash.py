@@ -1,5 +1,5 @@
 import unittest
-from src.minhash.minhash import k, VanillaMinHash
+from src.minhash.minhash import U, k, VanillaMinHash
 
 
 class TestVanillaMinHash(unittest.TestCase):
@@ -50,3 +50,13 @@ class TestVanillaMinHash(unittest.TestCase):
         min_hash = VanillaMinHash(A)
         with self.assertRaises(TypeError):
             min_hash.insert(3.14)
+
+    def test_valid_subset(self):
+        A = {0, 1, 2}
+        min_hash = VanillaMinHash(A)
+        self.assertEqual(min_hash.get_signature().__class__, list)
+
+    def test_invalid_subset(self):
+        A = {0, 1, (len(U) + 69)}
+        with self.assertRaises(ValueError):
+            VanillaMinHash(A)
