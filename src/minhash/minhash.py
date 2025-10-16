@@ -30,7 +30,8 @@ class VanillaMinHash:
         self.signature = []
 
         for i in range(k):
-            self.signature.append(min(H(A, h[i])))
+            h_i = h[i]
+            self.signature.append(min(H(A, h_i)))
 
     def get_signature(self):
         """
@@ -48,6 +49,7 @@ class VanillaMinHash:
             raise TypeError("x must be of type 'int'")
 
         for i in range(k):
-            hx = h[i](x)
-            if hx < self.signature[i]:
-                self.signature[i] = hx
+            h_i = h[i]
+
+            if h_i(x) < self.signature[i]:
+                self.signature[i] = h_i(x)
