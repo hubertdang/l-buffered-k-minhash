@@ -109,6 +109,7 @@ class BufferedMinHash:
 
             if len(B_Ai) == 0:
                 self.__init__(self.A)
+                return
 
     def insert(self, x: int):
         """
@@ -124,3 +125,5 @@ class BufferedMinHash:
 
                 if len(B_Ai) == l:
                     d_Ai = max(B_Ai)
+
+            self.sketch[i] = (B_Ai, d_Ai)
