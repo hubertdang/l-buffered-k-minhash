@@ -21,6 +21,12 @@ def main():
     print("Actual Jaccard similarity: " + str(actual))
     print("Estimated Jaccard similarity: " + str(estimate))
 
+    # Accuracy (static): |estimated JS - true JS|
+    # Accuracy (dynamic): |estimated JS - true JS| after deletions
+    # Query speed (static): speed of get_signature operation
+    # Query speed (dynamic):
+    # Frequency of faults and cost of recovery in buffered k-MinHash
+
 
 if __name__ == "__main__":
     main()

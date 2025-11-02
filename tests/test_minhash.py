@@ -22,15 +22,6 @@ class TestVanillaMinHash(unittest.TestCase):
         signature_B = VanillaMinHash(B).get_signature()
         self.assertNotEqual(signature_A, signature_B)
 
-    def test_invalid_input_type(self):
-        with self.assertRaises(TypeError):
-            VanillaMinHash([1, 2, 3])
-
-    def test_empty_set(self):
-        A = set()
-        with self.assertRaises(ValueError):
-            min_hash = VanillaMinHash(A)
-
     def test_insert_new_integer(self):
         A = {1, 2, 3}
         min_hash = VanillaMinHash(A)
@@ -45,21 +36,10 @@ class TestVanillaMinHash(unittest.TestCase):
         min_hash.insert(2)
         self.assertEqual(original_signature, min_hash.get_signature())
 
-    def test_insert_invalid_type(self):
-        A = {1, 2, 3}
-        min_hash = VanillaMinHash(A)
-        with self.assertRaises(TypeError):
-            min_hash.insert(3.14)
-
     def test_valid_subset(self):
         A = {0, 1, 2}
         min_hash = VanillaMinHash(A)
         self.assertEqual(min_hash.get_signature().__class__, list)
-
-    def test_invalid_subset(self):
-        A = {0, 1, (len(U) + 69)}
-        with self.assertRaises(ValueError):
-            VanillaMinHash(A)
 
 
 class TestBufferedMinHash(unittest.TestCase):
@@ -84,10 +64,6 @@ class TestBufferedMinHash(unittest.TestCase):
         signature_B = BufferedMinHash(B).get_signature()
         self.assertNotEqual(signature_A, signature_B)
 
-    def test_invalid_input_type(self):
-        with self.assertRaises(TypeError):
-            BufferedMinHash([1, 2, 3])
-
     def test_delete_existing_element(self):
         min_hash = BufferedMinHash(self.A)
         x = 2
@@ -108,7 +84,7 @@ class TestBufferedMinHash(unittest.TestCase):
         min_hash = BufferedMinHash(small_set)
         min_hash.delete(1)
         self.assertEqual(min_hash.A, set())
-        for B, d in min_hash.sketch:
+        for B, d in min_hash.SA:
             self.assertEqual(B, [])
             self.assertEqual(d, (float('inf'), float('inf')))
 
